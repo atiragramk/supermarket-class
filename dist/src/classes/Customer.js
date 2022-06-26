@@ -12,7 +12,7 @@ class Customer {
             this.balance -= amount;
         }
         else {
-            throw new Error('Not enough money...');
+            throw new Error("Not enough money...");
         }
     }
     receiveProducts(products) {

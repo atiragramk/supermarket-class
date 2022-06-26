@@ -7,7 +7,7 @@ class WarehouseManager {
         this.productList = [];
     }
     receiveProducts(warehouse) {
-        this.productList = warehouse.giveProducts();
+        this.productList = warehouse.product;
     }
     get product() {
         return this.productList;

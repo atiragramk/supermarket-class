@@ -8,7 +8,7 @@ export class WarehouseManager implements IPerson {
     constructor(public name: string){}
 
     receiveProducts(warehouse: Warehouse) {
-        this.productList = warehouse.giveProducts()
+        this.productList = warehouse.product
     }
 
     get product () {

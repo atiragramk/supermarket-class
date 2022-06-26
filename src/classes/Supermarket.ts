@@ -9,7 +9,7 @@ export class Supermarket {
   private balance = 12000;
   public isOpen = false;
 
-  public openMarket (cashier: Cashier, manager: WarehouseManager) {
+  public openMarket(cashier: Cashier, manager: WarehouseManager) {
     if (cashier.available && manager.product.length) {
       this.productList = manager.product;
       this.isOpen = true;
@@ -19,9 +19,7 @@ export class Supermarket {
   }
 
   public sell(products: Array<string>, customer: Customer, cashier: Cashier) {
-   
     if (this.isOpen) {
-
       const wishList = this.productList.reduce(
         (filtered: TProduct[], product) => {
           products.forEach((item) => {
@@ -30,29 +28,34 @@ export class Supermarket {
             }
           });
           return filtered;
-        }, []);
+        },
+        []
+      );
 
-        if (wishList.length == 0) {
-            throw new Error("Sorry, there are no such products in our store");
-        }
+      if (wishList.length == 0) {
+        throw new Error("Sorry, there are no such products in our store");
+      }
 
-        const totalSum = wishList.reduce((sum, product) => {
-            return sum + product.price
-        }, 0)
-        this.takeMoneyFromCustomer(customer, totalSum, cashier);
-        this.giveCustomerProducts(customer, wishList);
-
+      const totalSum = wishList.reduce((sum, product) => {
+        return sum + product.price;
+      }, 0);
+      this.takeMoneyFromCustomer(customer, totalSum, cashier);
+      this.giveCustomerProducts(customer, wishList);
     } else {
       throw new Error("Sorry, we are closed");
     }
   }
 
-  public closeMarket (cashier: Cashier) {
+  public closeMarket(cashier: Cashier) {
     this.balance += cashier.collection();
     this.isOpen = false;
   }
-  
-  protected takeMoneyFromCustomer(customer: Customer, amount: number, cashier: Cashier) {
+
+  protected takeMoneyFromCustomer(
+    customer: Customer,
+    amount: number,
+    cashier: Cashier
+  ) {
     customer.giveMoney(amount);
     cashier.receiveMoney(amount);
   }
@@ -60,5 +63,4 @@ export class Supermarket {
   protected giveCustomerProducts(customer: Customer, products: TProduct[]) {
     customer.receiveProducts(products);
   }
-
 }

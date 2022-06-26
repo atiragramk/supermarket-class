@@ -14,3 +14,4 @@ manager.receiveProducts(storage);
 market.openMarket(cashier, manager);
 market.sell(['bread', 'ham', 'eggs'], customer, cashier);
 market.closeMarket(cashier);
+console.log(market, cashier, customer);
