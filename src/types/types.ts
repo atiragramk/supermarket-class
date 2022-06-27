@@ -1,19 +1,28 @@
-export interface IPerson {
+export type TReforms = {
   name: string;
+  priority: string;
+  status: string;
 }
 
-export enum Producer {
-  Chumak = "Chumak",
-  Roshen = "Roshen",
-  Hlobino = "Hlobino",
-  Premia = "Premia",
-  Multico = "Multico",
-  Hrona = "Hrona",
-  Halka = "Halka",
+export type TMembers = string[];
+
+export interface IPresident {
+  name: string;
+  country: string;
 }
 
-export type TProduct = {
+export interface IAlliance {
   name: string;
-  price: number;
-  producer: Producer;
-};
+  header: IPresident;
+  type: string;
+  members: TMembers;
+  requirements: TReforms[];
+}
+
+export interface ICountry {
+  name: string;
+  president: IPresident;
+  alliances: string;
+  reforms: TReforms[];
+  situation: string;
+}
